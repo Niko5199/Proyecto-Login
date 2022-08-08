@@ -10,21 +10,26 @@
 </head>
 
 <body>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">UsuarioId</th>
-                <th scope="col">LastName</th>
-                <th scope="col">FirstName</th>
-                <th scope="col">Email</th>
-            </tr>
-        </thead>
-        <?php require_once 'Usuario.php';
+    <div class="container-sm">
 
-        $Obj = new Usuario('Rojas', 'Josue', 'paredesjosue77', 'admin123');
-        $Obj->AddUser();
-        ?>
-    </table>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">UsuarioId</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php require_once 'Usuario.php';
+
+                $Obj = new Usuario('Rojas', 'Josue', 'paredesjosue77', 'admin123');
+                $Obj->SelectUsers(); ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

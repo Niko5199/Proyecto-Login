@@ -1,9 +1,6 @@
 <?php
 require 'Sql.php';
 
-
-
-
 class Usuario
 {
     public function __construct(string $LastName, string $FirstName, string $Email, string $Password)
@@ -15,12 +12,11 @@ class Usuario
         $this->Sqlquery = new SQLquery();
     }
 
-    public function AddUser()
+    public function SelectUsers()
     {
         $result = $this->Sqlquery->SELECT();
         while ($row = $result->fetch_assoc()) {
-            echo "
-            <tr>
+            echo "<tr>
                 <th scope='row'>${row['UsuarioId']}</th>
                 <td>${row['LastName']}</td>
                 <td>${row['FirstName']}</td>
@@ -29,7 +25,25 @@ class Usuario
             ";
         }
     }
+    public function AddUser()
+    {
+        $this->Sqlquery->ADD($this->LastName, $this->FirstName, $this->Email, $this->Password);
+    }
+    public function DeleteUser($UsuarioID)
+    {
+        $this->Sqlquery->DELETE($UsuarioID);
+    }
+    public function UpdateUser(string $LastName, string $FirstName, string $Email, int $UsuarioID)
+    {
+        $this->Sqlquery->UPDATE($LastName, $FirstName, $Email, $UsuarioID);
+    }
 }
 
-$Obj = new Usuario('Rojas', 'Josue', 'paredesjosue77', 'admin123');
-$Obj->AddUser();
+$Obj = new Usuario('Rojas', 'Arturo', 'rojasrosetearturo@gmail.com', 'arturo123');
+
+
+// $Obj->AddUser();
+// $Obj->SelectUsers();
+// $Obj->DeleteUser(2);
+
+$Obj->UpdateUser('Linares', 'Luis', 'luislinares@outlook.com', 1);
